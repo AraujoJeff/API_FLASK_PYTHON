@@ -1,0 +1,47 @@
+!pip install flask
+
+from flask import Flask, jsonify
+import json
+
+app = Flask(__name__)
+
+data = {
+        "Number": 1,
+        "Name": "Alice",
+        "Age": 28,
+        "City": "New York",
+        "Country": "USA"
+      }, {
+          "Number": 2,
+          "Name": "Bob",
+          "Age": 34,
+          "City": "London",
+          "Country": "UK"
+      },  {
+          "Number": 3,
+          "Name": "Charlie",
+          "Age": 22,
+          "City": "Sydney",
+          "Country": "Australia"
+      },  {
+          "Number": 4,
+          "Name": "David",
+          "Age": 45,
+          "City": "Toronto",
+          "Country": "Canada"
+      },  {
+          "Number": 5,
+          "Name": "Eva",
+          "Age": 30,
+          "City": "Berlin",
+          "Country": "Germany"
+      }
+
+@app.route('/data', methods=['GET'])
+def get_data():
+    with open('data.json') as f:
+        data = json.load(f)
+    return jsonify(data)
+
+if __name__ == '__main__':
+    app.run(debug=True)
